@@ -1,11 +1,10 @@
 package se331.lab6.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import se331.lab6.dao.EventDao;
 import se331.lab6.entity.Event;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +18,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> getEvents(Integer pageSize, Integer page) {
+    public Page<Event> getEvents(Integer pageSize, Integer page) {
         return eventDao.getEvents(pageSize, page);
     }
 
