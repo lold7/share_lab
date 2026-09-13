@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -30,6 +32,12 @@ public class EventController {
         } catch (IndexOutOfBoundsException e) {
             return ResponseEntity.ok().headers(responseHeader).body(pageOutput.getContent());
         }
+    }
+
+    @PostMapping("/events")
+    public ResponseEntity<?> addEvent(@RequestBody Event event) {
+        Event output = eventService.save(event);
+        return ResponseEntity.ok(output);
     }
 
     @GetMapping("/events/{id}")
