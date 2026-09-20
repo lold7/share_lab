@@ -10,9 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -26,10 +24,6 @@ public class Organizer {
     @EqualsAndHashCode.Exclude
     Long id;
     String name;
-
     @OneToMany(mappedBy = "organizer")
-    @Builder.Default
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    List<Event> ownEvents = new ArrayList<>();
+    List<Event> ownEvents;
 }

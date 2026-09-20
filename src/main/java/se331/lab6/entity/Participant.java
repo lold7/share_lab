@@ -10,9 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -27,10 +25,6 @@ public class Participant {
     Long id;
     String name;
     String telNo;
-
-    @ManyToMany(mappedBy = "participants")
-    @Builder.Default
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    List<Event> eventHistories = new ArrayList<>();
+    @ManyToMany
+    List<Event> eventHistories;
 }

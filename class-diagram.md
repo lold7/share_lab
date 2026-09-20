@@ -38,7 +38,7 @@ classDiagram
 | Relationship | Owning side | Inverse side | Annotation |
 |---|---|---|---|
 | Organizer — Event | `Event.organizer` | `Organizer.ownEvents` | `@ManyToOne` / `@OneToMany(mappedBy = "organizer")` |
-| Event — Participant | `Event.participants` | `Participant.eventHistories` | `@ManyToMany` / `@ManyToMany(mappedBy = "participants")` |
+| Event — Participant | `Participant.eventHistories` | `Event.participants` | `@ManyToMany` / `@ManyToMany(mappedBy = "eventHistories")` |
 
 - **One Organizer owns many Events** (1 : N) — the foreign key `organizer_id` lives in the `event` table.
-- **An Event has many Participants and a Participant joins many Events** (N : N) — Hibernate creates the join table `event_participants`.
+- **An Event has many Participants and a Participant joins many Events** (N : N) — `Participant` is the owning side, so Hibernate creates the join table `participant_event_histories`.

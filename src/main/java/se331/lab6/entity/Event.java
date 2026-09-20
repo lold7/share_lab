@@ -11,9 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -33,15 +31,8 @@ public class Event {
     String date;
     String time;
     Boolean petsAllowed;
-
     @ManyToOne
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     Organizer organizer;
-
-    @ManyToMany
-    @Builder.Default
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    List<Participant> participants = new ArrayList<>();
+    @ManyToMany(mappedBy = "eventHistories")
+    List<Participant> participants;
 }
