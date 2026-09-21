@@ -6,6 +6,8 @@ import se331.lab6.entity.Event;
 import se331.lab6.entity.EventDTO;
 import se331.lab6.entity.Organizer;
 import se331.lab6.entity.OrganizerDTO;
+import se331.lab6.entity.Participant;
+import se331.lab6.entity.ParticipantDetailDTO;
 
 import java.util.List;
 
@@ -20,4 +22,8 @@ public interface LabMapper {
     OrganizerDTO getOrganizerDTO(Organizer organizer);
 
     List<OrganizerDTO> getOrganizerDTO(List<Organizer> organizers);
+
+    ParticipantDetailDTO getParticipantDetailDTO(Participant participant);
+
+    List<ParticipantDetailDTO> getParticipantDetailDTO(List<Participant> participants);
 }
