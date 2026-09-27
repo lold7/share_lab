@@ -1,6 +1,7 @@
 package se331.lab6.dao;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import se331.lab6.entity.Event;
 
 public interface EventDao {
@@ -11,4 +12,6 @@ public interface EventDao {
     Event getEvent(Long id);
 
     Event save(Event event);
+
+    Page<Event> getEvents(String name, Pageable page);
 }
