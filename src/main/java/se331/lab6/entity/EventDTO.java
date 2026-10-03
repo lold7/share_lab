@@ -24,4 +24,6 @@ public class EventDTO {
     EventOrganizerDTO organizer;
     @Builder.Default
     List<ParticipantDTO> participants = new ArrayList<>();
+    @Builder.Default
+    List<String> images = new ArrayList<>();
 }

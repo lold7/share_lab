@@ -1,5 +1,6 @@
 package se331.lab6.entity;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,4 +38,7 @@ public class Event {
     @ManyToMany(mappedBy = "eventHistories")
     @Builder.Default
     List<Participant> participants = new ArrayList<>();
+    @ElementCollection
+    @Builder.Default
+    List<String> images = new ArrayList<>();
 }
