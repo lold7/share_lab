@@ -71,6 +71,12 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!-- Amazon S3 client (used for Supabase Storage) -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>2.42.39</version>
+        </dependency>
     </dependencies>
 
     <build>
