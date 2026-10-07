@@ -11,6 +11,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import se331.lab6.entity.Organizer;
+import se331.lab6.repository.OrganizerRepository;
 import se331.lab6.security.config.JwtService;
 import se331.lab6.security.token.Token;
 import se331.lab6.security.token.TokenRepository;
@@ -32,6 +34,7 @@ public class AuthenticationService {
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
   private final JsonMapper jsonMapper;
+  private final OrganizerRepository organizerRepository;
 
   public AuthenticationResponse register(RegisterRequest request) {
     User user = User.builder()
@@ -44,12 +47,19 @@ public class AuthenticationService {
             .enabled(true)
             .build();
     var savedUser = repository.save(user);
+    // every user in this system is an organizer, so create the linked organizer
+    Organizer organizer = organizerRepository.save(Organizer.builder()
+            .name(request.getFirstname() + " " + request.getLastname())
+            .user(savedUser)
+            .build());
+    savedUser.setOrganizer(organizer);
     var jwtToken = jwtService.generateToken(user);
     var refreshToken = jwtService.generateRefreshToken(user);
     saveUserToken(savedUser, jwtToken);
     return AuthenticationResponse.builder()
         .accessToken(jwtToken)
             .refreshToken(refreshToken)
+            .user(LabMapper.INSTANCE.getOrganizerAuthDTO(organizer))
         .build();
   }
 
